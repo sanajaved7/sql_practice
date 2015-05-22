@@ -4,6 +4,7 @@
 
 import time
 import psycopg2
+import bleach
 
 DB = []
 # ## Database connection
@@ -33,5 +34,6 @@ def AddPost(content):
     Args:
       content: The text content of the new post.
     '''
-    client.execute("insert into posts values(%s)", (content,))
+    cleaned_content = bleach.clean(content)
+    client.execute("insert into posts values(%s)", (cleaned_content,))
     real_DB.commit()
