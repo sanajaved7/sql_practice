@@ -37,3 +37,8 @@ def AddPost(content):
     cleaned_content = bleach.clean(content)
     client.execute("insert into posts values(%s)", (cleaned_content,))
     real_DB.commit()
+
+def UpdatePost():
+    '''Updates text of existing posts values" '''
+
+    client.execute("update posts set content = 'spam replaced' where content like '%<span>%'")
