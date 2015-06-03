@@ -25,3 +25,13 @@ select programs.name, count(bugs.filename) as num
         on programs.filename = bugs.filename
     group by programs.name
     order by num;
+
+
+# Use self join to find roommates in student residence database
+select a.id, b.id
+    from residences as a,
+        residences as b,
+    where
+        a.building = b.building
+    and a.room = b.room
+    and a.id < b.id;
