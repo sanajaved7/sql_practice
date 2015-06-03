@@ -17,3 +17,11 @@ select name, weight
     from players, (select avg(weight) as av from players)
     as subq
     where weight < av;
+
+
+# Using count aggregation to return rows that also have value of zero
+select programs.name, count(bugs.filename) as num
+    from programs left join bugs
+        on programs.filename = bugs.filename
+    group by programs.name
+    order by num;
