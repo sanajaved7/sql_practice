@@ -35,3 +35,9 @@ select a.id, b.id
         a.building = b.building
     and a.room = b.room
     and a.id < b.id;
+
+# Create view to store student count query
+create view course_size as
+    select course_id, count(*) as num
+        from enrollment
+    group by course_id;
